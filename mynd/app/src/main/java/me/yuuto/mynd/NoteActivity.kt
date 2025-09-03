@@ -10,6 +10,8 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import me.yuuto.mynd.notes.Note
+import me.yuuto.mynd.notes.NoteDatabase
 
 private var noteId: Int = -1
 private var isNewNote: Boolean = true
@@ -26,7 +28,7 @@ class TestActivity : AppCompatActivity() {
 
         if (noteId != -1) {
             isNewNote = false
-            val noteDao = NoteDatabase.getDatabase(this).noteDao()
+            val noteDao = NoteDatabase.Companion.getDatabase(this).noteDao()
             CoroutineScope(Dispatchers.IO).launch {
                 val loadedNote = noteDao.getNoteById(noteId)
                 note = loadedNote
@@ -51,7 +53,7 @@ class TestActivity : AppCompatActivity() {
     }
 
     fun saveNote(context: Context, title: String, content: String) {
-        val noteDao = NoteDatabase.getDatabase(context).noteDao()
+        val noteDao = NoteDatabase.Companion.getDatabase(context).noteDao()
         val newNote = Note(title = title, content = content)
 
         CoroutineScope(Dispatchers.IO).launch {
@@ -64,7 +66,7 @@ class TestActivity : AppCompatActivity() {
         note.content = newContent
         note.lastEdited = System.currentTimeMillis()
 
-        val noteDao = NoteDatabase.getDatabase(context).noteDao()
+        val noteDao = NoteDatabase.Companion.getDatabase(context).noteDao()
         CoroutineScope(Dispatchers.IO).launch {
             noteDao.update(note)
         }

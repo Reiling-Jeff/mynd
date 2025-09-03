@@ -1,4 +1,4 @@
-package me.yuuto.mynd
+package me.yuuto.mynd.notes
 
 import androidx.room.Dao
 import androidx.room.Insert

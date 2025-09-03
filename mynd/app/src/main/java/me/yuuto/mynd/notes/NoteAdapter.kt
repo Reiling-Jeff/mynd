@@ -1,4 +1,4 @@
-package me.yuuto.mynd
+package me.yuuto.mynd.notes
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import me.yuuto.mynd.R
 import java.text.SimpleDateFormat
 import java.util.Date
 

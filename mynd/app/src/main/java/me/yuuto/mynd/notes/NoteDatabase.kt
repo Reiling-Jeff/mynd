@@ -1,4 +1,4 @@
-package me.yuuto.mynd
+package me.yuuto.mynd.notes
 
 import android.content.Context
 import androidx.room.Database
