@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/bottomSheetLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@color/backgroundDark">
+
+    <!-- Handle -->
+    <View
+        android:layout_width="40dp"
+        android:layout_height="4dp"
+        android:layout_gravity="center"
+        android:background="@drawable/bg_bottomsheet_handle"
+        android:layout_marginBottom="12dp" />
+
+    <!-- Datum -->
+    <TextView
+        android:id="@+id/entryDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Montag, 15. September 2025"
+        android:textColor="@color/textWhite"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- Titel -->
+    <EditText
+        android:id="@+id/entryTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Titel..."
+        android:background="@color/inputBackground"
+        android:textColor="@color/textWhite"
+        android:textColorHint="@color/textHint"
+        android:padding="12dp"
+        android:textSize="16sp"
+        android:layout_marginBottom="12dp"/>
+
+    <!-- Inhalt -->
+    <EditText
+        android:id="@+id/entryContent"
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:hint="Schreibe deinen Eintrag..."
+        android:background="@color/inputBackground"
+        android:gravity="top|start"
+        android:inputType="textMultiLine"
+        android:scrollHorizontally="false"
+        android:singleLine="false"
+        android:textColor="@color/textWhite"
+        android:textColorHint="@color/textHint"
+        android:padding="12dp"
+        android:textSize="14sp"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- Mood / Tags -->
+    <LinearLayout
+        android:id="@+id/chipGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="16dp">
+
+        <TextView
+            android:id="@+id/chipMood"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/bg_chip_neutral"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:paddingTop="6dp"
+            android:paddingBottom="6dp"
+            android:text="Laune"
+            android:textColor="@color/textHint"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/chipGratitude"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/bg_chip_neutral"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:paddingTop="6dp"
+            android:paddingBottom="6dp"
+            android:text="Dankbarkeit"
+            android:textColor="@color/textHint"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/chipTodo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_chip_neutral"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:paddingTop="6dp"
+            android:paddingBottom="6dp"
+            android:text="To-do"
+            android:textColor="@color/textHint"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <!-- Speichern-Button -->
+    <Button
+        android:id="@+id/saveEntryButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Speichern"
+        android:backgroundTint="@color/purpleAccent"
+        android:textColor="@color/textWhite"
+        android:textSize="14sp"
+        android:textAllCaps="false"/>
+</LinearLayout>

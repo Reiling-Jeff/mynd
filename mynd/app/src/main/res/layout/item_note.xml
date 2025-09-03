@@ -1,0 +1,40 @@
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="12dp"
+    app:cardBackgroundColor="@color/inputBackground"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="4dp"
+    android:foreground="?attr/selectableItemBackground">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/tvNoteTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Titel der Notiz"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/textWhite"
+            android:ellipsize="end"
+            android:maxLines="1" />
+
+        <TextView
+            android:id="@+id/tvNoteContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Vorschau des Inhalts..."
+            android:textSize="14sp"
+            android:textColor="@color/textHint"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:layout_marginTop="6dp"/>
+
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

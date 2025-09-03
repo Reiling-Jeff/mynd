@@ -1,0 +1,4 @@
+<resources>
+    <item name="notesTitle" type="id"/>
+    <item name="noteHeading" type="id"/>
+</resources>

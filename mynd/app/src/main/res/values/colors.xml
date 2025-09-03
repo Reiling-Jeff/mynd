@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Standardfarben (von Android Studio Vorlage) -->
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>
@@ -7,4 +8,11 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!-- Eigene Darkmode-Farben -->
+    <color name="purpleAccent">#6418C7</color>
+    <color name="backgroundDark">#140016</color>
+    <color name="inputBackground">#1E0022</color>
+    <color name="textWhite">#FFFFFF</color>
+    <color name="textHint">#AAAAAA</color>
 </resources>
