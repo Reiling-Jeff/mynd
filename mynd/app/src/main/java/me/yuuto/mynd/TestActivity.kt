@@ -25,7 +25,7 @@ class TestActivity : AppCompatActivity() {
         noteId = intent?.getIntExtra("note_id", -1) ?: -1
 
         if (noteId != -1) {
-            isNewNote = false;
+            isNewNote = false
             val noteDao = NoteDatabase.getDatabase(this).noteDao()
             CoroutineScope(Dispatchers.IO).launch {
                 val loadedNote = noteDao.getNoteById(noteId)

@@ -1,5 +1,6 @@
 package me.yuuto.mynd
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,20 +25,16 @@ class NoteAdapter(
         return NoteViewHolder(view)
     }
 
+    @SuppressLint("SimpleDateFormat", "SetTextI18n")
     override fun onBindViewHolder(holder: NoteViewHolder, position: Int) {
         val note = notes[position]
         holder.title.text = note.title.ifBlank { "(Ohne Titel)" }
-        val simpleDateFormat: SimpleDateFormat = SimpleDateFormat("dd.MM.yyyy 'at' HH:mm:ss")
+        val simpleDateFormat = SimpleDateFormat("dd.MM.yyyy 'at' HH:mm:ss")
         val date = Date(note.lastEdited)
         val time = simpleDateFormat.format(date)
-        holder.subtitle.text = "Last edited: ${time}"
+        holder.subtitle.text = "Last edited: $time"
         holder.itemView.setOnClickListener { onClick(note) }
     }
 
     override fun getItemCount(): Int = notes.size
-
-    fun removeAt(position: Int) {
-        notes.removeAt(position)
-        notifyItemRemoved(position)
-    }
 }
