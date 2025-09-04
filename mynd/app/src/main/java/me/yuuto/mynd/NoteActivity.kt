@@ -20,7 +20,7 @@ private var note: Note? = null
 class TestActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.test_activity)
+        setContentView(R.layout.note_activity)
 
         val title = findViewById<EditText>(R.id.noteHeading)
         val content = findViewById<EditText>(R.id.noteContent)
