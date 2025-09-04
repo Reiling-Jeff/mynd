@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backgroundDark"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Überschrift -->
+        <TextView
+            android:id="@+id/settingsTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:text="Einstellungen"
+            android:textColor="@color/textWhite"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <!-- Abschnitt: Sicherheit -->
+        <TextView
+            android:id="@+id/securitySection"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sicherheit"
+            android:textColor="@color/textHint"
+            android:textSize="14sp"
+            android:layout_marginBottom="8dp"/>
+
+        <!-- Lock Notes Option -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:padding="12dp"
+            android:background="@color/inputBackground"
+            android:layout_marginBottom="12dp">
+
+            <TextView
+                android:id="@+id/lockNotesLabel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Notizen sperren"
+                android:textColor="@color/textWhite"
+                android:textSize="18sp" />
+
+            <Switch
+                android:id="@+id/lockNotesSwitch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:thumbTint="@color/purpleAccent"
+                android:trackTint="@color/textHint"/>
+        </LinearLayout>
+
+        <!-- Weitere Einstellungen kannst du hier hinzufügen -->
+
+    </LinearLayout>
+</ScrollView>

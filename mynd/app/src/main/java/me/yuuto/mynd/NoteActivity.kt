@@ -5,7 +5,10 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.biometric.BiometricPrompt
+import androidx.core.content.ContextCompat
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -17,11 +20,58 @@ private var noteId: Int = -1
 private var isNewNote: Boolean = true
 private var note: Note? = null
 
-class TestActivity : AppCompatActivity() {
+class NoteActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.note_activity)
 
+        val prefs = getSharedPreferences("app_settings", MODE_PRIVATE)
+        val lockEnabled = prefs.getBoolean("lock_notes", false)
+
+        if (lockEnabled) {
+            showBiometricPrompt()
+        } else {
+            loadNoteContent()
+        }
+    }
+
+    private fun showBiometricPrompt() {
+        val executor = ContextCompat.getMainExecutor(this)
+        val biometricPrompt = BiometricPrompt(
+            this, executor,
+            object : BiometricPrompt.AuthenticationCallback() {
+                override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
+                    super.onAuthenticationSucceeded(result)
+                    loadNoteContent()
+                }
+
+                override fun onAuthenticationError(errorCode: Int, errString: CharSequence) {
+                    super.onAuthenticationError(errorCode, errString)
+                    Toast.makeText(applicationContext, "Zugriff verweigert", Toast.LENGTH_SHORT)
+                        .show()
+                    finish() // NoteActivity schließen
+                }
+
+                override fun onAuthenticationFailed() {
+                    super.onAuthenticationFailed()
+                    Toast.makeText(
+                        applicationContext,
+                        "Fingerabdruck nicht erkannt",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            })
+
+        val promptInfo = BiometricPrompt.PromptInfo.Builder()
+            .setTitle("Notiz entsperren")
+            .setSubtitle("Bestätige mit Fingerabdruck")
+            .setNegativeButtonText("Abbrechen")
+            .build()
+
+        biometricPrompt.authenticate(promptInfo)
+    }
+
+    private fun loadNoteContent() {
         val title = findViewById<EditText>(R.id.noteHeading)
         val content = findViewById<EditText>(R.id.noteContent)
         noteId = intent?.getIntExtra("note_id", -1) ?: -1

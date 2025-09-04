@@ -22,9 +22,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".TestActivity"
+        <activity android:name=".NoteActivity"
             android:exported="true"
             android:theme="@style/Theme.Mynd.NoActionBar"/>
+        <activity android:name=".SettingsActivity" />
+
     </application>
 
 </manifest>
