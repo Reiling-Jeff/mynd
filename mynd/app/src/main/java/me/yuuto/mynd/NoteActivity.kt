@@ -60,7 +60,8 @@ class NoteActivity : AppCompatActivity() {
                         Toast.LENGTH_SHORT
                     ).show()
                 }
-            })
+            }
+        )
 
         val promptInfo = BiometricPrompt.PromptInfo.Builder()
             .setTitle("Notiz entsperren")
@@ -87,12 +88,10 @@ class NoteActivity : AppCompatActivity() {
                     content.setText(loadedNote?.content ?: "")
                 }
             }
-
         }
 
         val saveButton = findViewById<Button>(R.id.saveButton)
         saveButton.setOnClickListener {
-            // Hier kommt der Code, der beim Klick ausgeführt werden soll
             Log.d("Notes", "Speichern-Button gedrückt")
 
             if (isNewNote) saveNote(this, title.text.toString(), content.text.toString())
