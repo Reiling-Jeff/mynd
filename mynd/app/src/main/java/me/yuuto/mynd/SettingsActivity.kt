@@ -18,7 +18,10 @@ class SettingsActivity : AppCompatActivity() {
 
         lockNotesSwitch = findViewById(R.id.lockNotesSwitch)
 
-        // Prüfen ob Biometrie verfügbar ist
+        val prefs = getSharedPreferences("app_settings", MODE_PRIVATE)
+        val isLocked = prefs.getBoolean("lock_notes", false)
+        lockNotesSwitch.isChecked = isLocked
+
         val biometricManager = BiometricManager.from(this)
         val canAuth = biometricManager.canAuthenticate(BiometricManager.Authenticators.BIOMETRIC_STRONG)
 
