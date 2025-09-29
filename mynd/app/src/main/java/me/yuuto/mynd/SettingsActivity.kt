@@ -34,7 +34,6 @@ class SettingsActivity : AppCompatActivity() {
             if (isChecked) {
                 showBiometricPrompt()
             } else {
-                // Sperre deaktivieren
                 Toast.makeText(this, "Notizen entsperrt", Toast.LENGTH_SHORT).show()
                 saveLockState(false)
             }
@@ -63,7 +62,8 @@ class SettingsActivity : AppCompatActivity() {
                     Toast.makeText(applicationContext, "Fingerabdruck nicht erkannt", Toast.LENGTH_SHORT).show()
                     lockNotesSwitch.isChecked = false
                 }
-            })
+            }
+        )
 
         val promptInfo = BiometricPrompt.PromptInfo.Builder()
             .setTitle("Notizen sperren")
@@ -75,7 +75,6 @@ class SettingsActivity : AppCompatActivity() {
     }
 
     private fun saveLockState(locked: Boolean) {
-        // hier z. B. in SharedPreferences speichern
         val prefs = getSharedPreferences("app_settings", MODE_PRIVATE)
         prefs.edit().putBoolean("lock_notes", locked).apply()
     }
