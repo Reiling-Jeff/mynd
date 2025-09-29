@@ -28,7 +28,7 @@ class NoteActivity : AppCompatActivity() {
         val prefs = getSharedPreferences("app_settings", MODE_PRIVATE)
         val lockEnabled = prefs.getBoolean("lock_notes", false)
 
-        if (lockEnabled) {
+        if (lockEnabled && noteId != -1) {
             showBiometricPrompt()
         } else {
             loadNoteContent()
