@@ -43,7 +43,7 @@
             android:layout_marginBottom="12dp">
 
             <TextView
-                android:id="@+id/lockNotesLabel"
+                android:id="@+id/lockNotesText"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -59,7 +59,26 @@
                 android:trackTint="@color/textHint"/>
         </LinearLayout>
 
-        <!-- Weitere Einstellungen kannst du hier hinzufügen -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:padding="12dp"
+            android:background="@color/inputBackground"
+            android:layout_marginBottom="12dp">
+
+            <EditText
+                android:id="@+id/notesPassword"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="Notizen Passwort"
+                android:inputType="textPassword"
+                android:textColor="@color/textWhite"
+                android:textColorHint="@color/textHint"
+                android:textSize="18sp" />
+        </LinearLayout>
 
     </LinearLayout>
 </ScrollView>
