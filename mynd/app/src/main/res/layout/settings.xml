@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/backgroundDark"
@@ -17,7 +17,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
-            android:text="Einstellungen"
+            android:text="@string/settings_title"
             android:textColor="@color/textWhite"
             android:textSize="24sp"
             android:textStyle="bold" />
@@ -27,7 +27,7 @@
             android:id="@+id/securitySection"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sicherheit"
+            android:text="@string/settings_security"
             android:textColor="@color/textHint"
             android:textSize="14sp"
             android:layout_marginBottom="8dp"/>
@@ -47,7 +47,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Notizen sperren"
+                android:text="@string/settings_security_lock_notes"
                 android:textColor="@color/textWhite"
                 android:textSize="18sp" />
 
@@ -56,7 +56,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:thumbTint="@color/purpleAccent"
-                android:trackTint="@color/textHint"/>
+                tools:ignore="UseSwitchCompatOrMaterialXml" />
         </LinearLayout>
 
         <LinearLayout
@@ -73,7 +73,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:hint="Notizen Passwort"
+                android:autofillHints=""
+                android:hint="@string/settings_security_lock_password"
                 android:inputType="textPassword"
                 android:textColor="@color/textWhite"
                 android:textColorHint="@color/textHint"
