@@ -18,6 +18,7 @@ import kotlinx.coroutines.withContext
 import me.yuuto.mynd.notes.Note
 import me.yuuto.mynd.notes.NoteAdapter
 import me.yuuto.mynd.notes.NoteDatabase
+import me.yuuto.mynd.R.string
 
 class MainActivity : AppCompatActivity() {
 
@@ -77,7 +78,7 @@ class MainActivity : AppCompatActivity() {
                 }
             } catch (_: Throwable) {
                 withContext(Dispatchers.Main) {
-                    Toast.makeText(this@MainActivity, "DB nicht verfügbar", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@MainActivity, getString(string.toast_database_notfound), Toast.LENGTH_SHORT).show()
                 }
             }
         }

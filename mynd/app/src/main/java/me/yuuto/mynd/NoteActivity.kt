@@ -17,6 +17,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import me.yuuto.mynd.notes.Note
 import me.yuuto.mynd.notes.NoteDatabase
+import me.yuuto.mynd.R.string
 
 private var noteId: Int = -1
 private var isNewNote: Boolean = true
@@ -52,7 +53,7 @@ class NoteActivity : AppCompatActivity() {
                     // If user cancels via negative button or back press.
                     if (errorCode == BiometricPrompt.ERROR_NEGATIVE_BUTTON||
                         errorCode == BiometricPrompt.ERROR_CANCELED) {
-                        Toast.makeText(applicationContext, "Authentifizierung abgebrochen", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(applicationContext, getString(string.toast_auth_canceled), Toast.LENGTH_SHORT).show()
                         return
                     }
                     showPasswordDialogForUnlock()
@@ -62,7 +63,7 @@ class NoteActivity : AppCompatActivity() {
                     super.onAuthenticationFailed()
                     Toast.makeText(
                         applicationContext,
-                        "Fingerabdruck nicht erkannt",
+                        getString(string.toast_fingerprint_not_recognized),
                         Toast.LENGTH_SHORT
                     ).show()
                 }
@@ -70,9 +71,9 @@ class NoteActivity : AppCompatActivity() {
         )
 
         val promptInfo = BiometricPrompt.PromptInfo.Builder()
-            .setTitle("Notiz entsperren")
-            .setSubtitle("Bestätige mit Fingerabdruck")
-            .setNegativeButtonText("Abbrechen")
+            .setTitle(getString(string.title_biomatric_prompt_lock))
+            .setSubtitle(getString(string.subtitle_biometric_prompt))
+            .setNegativeButtonText(getString(string.general_cancel))
             .build()
 
         biometricPrompt.authenticate(promptInfo)
@@ -129,27 +130,27 @@ class NoteActivity : AppCompatActivity() {
 
     private fun showPasswordDialogForUnlock() {
         val builder = AlertDialog.Builder(this)
-        builder.setTitle("Passwort eingeben")
+        builder.setTitle(getString(string.title_dialog_password))
 
         val input = EditText(this)
         input.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
         builder.setView(input)
 
-        builder.setPositiveButton("Bestätigen") { dialog, _ ->
+        builder.setPositiveButton(getString(string.general_confirm)) { dialog, _ ->
             val enteredPassword = input.text.toString()
             val prefs = getSharedPreferences("app_settings", MODE_PRIVATE)
             val savedPassword = prefs.getString("notes_password", null)
 
             if (enteredPassword == savedPassword) {
-                Toast.makeText(this, "Notiz entsperrt", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(string.toast_unlocked_notes), Toast.LENGTH_SHORT).show()
                 loadNoteContent()
             } else {
-                Toast.makeText(this, "Falsches Passwort", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(string.toast_password_incorrect), Toast.LENGTH_SHORT).show()
             }
             dialog.dismiss()
         }
-        builder.setNegativeButton("Abbrechen") { dialog, _ ->
-            Toast.makeText(this, "Abgebrochen", Toast.LENGTH_SHORT).show()
+        builder.setNegativeButton(getString(string.general_cancel)) { dialog, _ ->
+            Toast.makeText(this, getString(string.toast_canceled), Toast.LENGTH_SHORT).show()
             dialog.cancel()
         }
 

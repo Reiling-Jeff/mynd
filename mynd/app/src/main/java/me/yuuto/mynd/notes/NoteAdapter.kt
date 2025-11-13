@@ -29,7 +29,7 @@ class NoteAdapter(
     @SuppressLint("SimpleDateFormat", "SetTextI18n")
     override fun onBindViewHolder(holder: NoteViewHolder, position: Int) {
         val note = notes[position]
-        holder.title.text = note.title.ifBlank { "(Ohne Titel)" }
+        holder.title.text = note.title.ifBlank { "no title" }
         val simpleDateFormat = SimpleDateFormat("dd.MM.yyyy 'at' HH:mm:ss")
         val date = Date(note.lastEdited)
         val time = simpleDateFormat.format(date)
