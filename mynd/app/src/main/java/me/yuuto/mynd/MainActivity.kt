@@ -32,6 +32,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.content_main)
 
+        // TODO (Code Style): findViewById ist anfällig für Null-Pointer-Exceptions. Erwägen Sie die Verwendung von View Binding.
         rvNotesList = findViewById(R.id.rvNotesList)
         fab = findViewById(R.id.fab)
 
@@ -74,6 +75,7 @@ class MainActivity : AppCompatActivity() {
                 withContext(Dispatchers.Main) {
                     notes.clear()
                     notes.addAll(allNotes)
+                    // TODO (Performance): notifyDataSetChanged() ist ineffizient. Erwägen Sie die Verwendung von DiffUtil, um die Liste zu aktualisieren.
                     noteAdapter.notifyDataSetChanged()
                 }
             } catch (_: Throwable) {
@@ -96,14 +98,24 @@ class MainActivity : AppCompatActivity() {
                 val position = viewHolder.adapterPosition
                 val noteToDelete = notes[position]
 
-                CoroutineScope(Dispatchers.IO).launch {
-                    try {
-                        NoteDatabase.getDatabase(applicationContext).noteDao().delete(noteToDelete)
-                    } catch (_: Exception) {}
-                }
+                CoroutineScope(Dispatchers.Main).launch {
+                    val success = withContext(Dispatchers.IO) {
+                        try {
+                            NoteDatabase.getDatabase(applicationContext).noteDao().delete(noteToDelete)
+                            true
+                        } catch (e: Exception) {
+                            false
+                        }
+                    }
 
-                notes.removeAt(position)
-                noteAdapter.notifyItemRemoved(position)
+                    if (success) {
+                        notes.remove(noteToDelete)
+                        noteAdapter.notifyItemRemoved(position)
+                    } else {
+                        noteAdapter.notifyItemChanged(position)
+                        Toast.makeText(this@MainActivity, getString(string.toast_swipetodelete_failed), Toast.LENGTH_SHORT).show()
+                    }
+                }
             }
 
             override fun onChildDraw(
@@ -124,6 +136,7 @@ class MainActivity : AppCompatActivity() {
 
                     val alpha = (50 + progress * (255 - 50)).toInt()
 
+                    // TODO (Performance): Das wiederholte Erstellen von Paint- und RectF-Objekten hier ist ineffizient. Initialisieren Sie sie einmal außerhalb.
                     val paint = android.graphics.Paint().apply {
                         color = Color.argb(alpha, 255, 0, 0)
                     }

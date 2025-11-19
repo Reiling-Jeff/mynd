@@ -30,6 +30,7 @@
     <string name="toast_fingerprint_not_recognized">Fingerabdruck nicht erkannt. Bitte erneut versuchen</string>
     <string name="toast_canceled">Abgebrochen</string>
     <string name="toast_database_notfound">Datenbank nicht verfügbar</string>
+    <string name="toast_swipetodelete_failed">Löschen fehlgeschlagen</string>
 
     <!-- Title -->
 
