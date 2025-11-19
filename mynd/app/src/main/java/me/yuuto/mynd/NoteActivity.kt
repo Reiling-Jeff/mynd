@@ -86,7 +86,7 @@ class NoteActivity : AppCompatActivity() {
 
         if (noteId != -1) {
             isNewNote = false
-            val noteDao = NoteDatabase.Companion.getDatabase(this).noteDao()
+            val noteDao = NoteDatabase.getDatabase(this).noteDao()
             CoroutineScope(Dispatchers.IO).launch {
                 val loadedNote = noteDao.getNoteById(noteId)
                 note = loadedNote
