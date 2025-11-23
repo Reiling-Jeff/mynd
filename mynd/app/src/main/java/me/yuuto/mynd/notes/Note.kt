@@ -8,6 +8,7 @@ data class Note(
     @PrimaryKey(autoGenerate = true) val id: Int = 0,
     var title: String,
     var content: String,
+    var date: String? = null, // Hinzugefügtes Datumsfeld
     val createdAt: Long = System.currentTimeMillis(),
     var lastEdited: Long = System.currentTimeMillis()
 )
