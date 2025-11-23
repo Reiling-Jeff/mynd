@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backgroundDark">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- Header-Card: Monat, Navigation, Heute-Pill -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/headerCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardBackgroundColor="@color/inputBackground"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="0dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="14dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageButton
+                            android:id="@+id/btnPrev"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:background="?attr/selectableItemBackgroundBorderless"
+                            android:contentDescription="Vorheriger Monat"
+                            android:padding="6dp"
+                            android:src="@drawable/ic_chevron_left"
+                            app:tint="@color/textWhite" />
+
+                        <TextView
+                            android:id="@+id/monthLabel"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="September 2025"
+                            android:textColor="@color/textWhite"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+
+                        <ImageButton
+                            android:id="@+id/btnNext"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:background="?attr/selectableItemBackgroundBorderless"
+                            android:contentDescription="Nächster Monat"
+                            android:padding="6dp"
+                            android:src="@drawable/ic_chevron_right"
+                            app:tint="@color/textWhite" />
+                    </LinearLayout>
+
+                    <!-- Sub-Row: Heute-Pill + Add-Button -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/todayPill"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/bg_pill_accent"
+                            android:paddingStart="12dp"
+                            android:paddingTop="6dp"
+                            android:paddingEnd="12dp"
+                            android:paddingBottom="6dp"
+                            android:text="Heute"
+                            android:textAllCaps="false"
+                            android:textColor="@color/textWhite"
+                            android:textSize="12sp" />
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="1dp"
+                            android:layout_weight="1" />
+
+                        <Button
+                            android:id="@+id/btnQuickAdd"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:backgroundTint="@color/purpleAccent"
+                            android:minWidth="0dp"
+                            android:paddingHorizontal="16dp"
+                            android:text="Eintrag"
+                            android:textAllCaps="false"
+                            android:textColor="@color/textWhite"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Wochentage -->
+            <LinearLayout
+                android:id="@+id/weekdaysRow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/WeekdayTextView"
+                    android:text="Mo" />
+
+                <TextView
+                    style="@style/WeekdayTextView"
+                    android:text="Di" />
+
+                <TextView
+                    style="@style/WeekdayTextView"
+                    android:text="Mi" />
+
+                <TextView
+                    style="@style/WeekdayTextView"
+                    android:text="Do" />
+
+                <TextView
+                    style="@style/WeekdayTextView"
+                    android:text="Fr" />
+
+                <TextView
+                    style="@style/WeekdayTextView"
+                    android:text="Sa" />
+
+                <TextView
+                    style="@style/WeekdayTextView"
+                    android:text="So" />
+            </LinearLayout>
+
+            <!-- Monatsgrid -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/calendarRecycler"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"
+                android:overScrollMode="never"
+                android:padding="2dp"
+                tools:itemCount="35" />
+
+            <!-- Detail-Karte (ausgewählter Tag) -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/dayDetailCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                app:cardBackgroundColor="@color/inputBackground"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="0dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/selectedDate"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Mo, 15. Sep 2025"
+                            android:textColor="@color/textWhite"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/entryCount"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="3 Einträge"
+                            android:textColor="@color/textHint"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+                    <!-- Stimmungs-Auswahl -->
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/moodRecycler"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="14dp"
+                        android:orientation="horizontal"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        tools:itemCount="5"
+                        tools:listitem="@layout/item_mood_icon" />
+
+                    <!-- Notizen-Liste -->
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/notesRecycler"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="14dp"
+                        android:nestedScrollingEnabled="false"
+                        android:orientation="vertical"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        tools:itemCount="2"
+                        tools:listitem="@layout/item_note_calendar" />
+
+                    <Button
+                        android:id="@+id/btnAddEntry"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="14dp"
+                        android:backgroundTint="@color/purpleAccent"
+                        android:text="Neuen Journaleintrag schreiben"
+                        android:textAllCaps="false"
+                        android:textColor="@color/textWhite"
+                        android:textSize="14sp" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
