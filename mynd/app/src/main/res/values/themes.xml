@@ -14,12 +14,11 @@
         <!-- Customize your theme here. -->
     </style>
 
-    <style name="Theme.Mynd.NoActionBar">
+    <style name="Theme.Mynd.NoActionBar" parent="Theme.Mynd">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
 
     <style name="Theme.Mynd.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
-    <style name="Theme.Mynd.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>
