@@ -22,11 +22,14 @@ import me.yuuto.mynd.R.string
 private var noteId: Int = -1
 private var isNewNote: Boolean = true
 private var note: Note? = null
+private var selectedDate: String? = null
 
 class NoteActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.note_activity)
+
+        selectedDate = intent?.getStringExtra("selected_date")
 
         val prefs = getSharedPreferences("app_settings", MODE_PRIVATE)
         val lockEnabled = prefs.getBoolean("lock_notes", false)
@@ -84,12 +87,19 @@ class NoteActivity : AppCompatActivity() {
         val content = findViewById<EditText>(R.id.noteContent)
         noteId = intent?.getIntExtra("note_id", -1) ?: -1
 
-        if (noteId != -1) {
-            isNewNote = false
+        isNewNote = noteId == -1 && selectedDate == null
+
+        if (!isNewNote) {
             val noteDao = NoteDatabase.getDatabase(this).noteDao()
             CoroutineScope(Dispatchers.IO).launch {
-                val loadedNote = noteDao.getNoteById(noteId)
+                val loadedNote: Note? = noteDao.getNoteById(noteId)
+
                 note = loadedNote
+
+                if (selectedDate != null && loadedNote == null) {
+                    isNewNote = true
+                }
+
                 withContext(Dispatchers.Main) {
                     title.setText(loadedNote?.title ?: "")
                     content.setText(loadedNote?.content ?: "")
@@ -99,18 +109,22 @@ class NoteActivity : AppCompatActivity() {
 
         val saveButton = findViewById<Button>(R.id.saveButton)
         saveButton.setOnClickListener {
-            Log.d("Notes", "Speichern-Button gedrückt")
+            Log.d("Notes", "Safe button pressed")
 
-            if (isNewNote) saveNote(this, title.text.toString(), content.text.toString())
-            else updateNote(this, note!!,title.text.toString(), content.text.toString())
+            // Die Logik für das Speichern oder Aktualisieren wurde vereinfacht
+            if (isNewNote || note == null) {
+                saveNote(this, title.text.toString(), content.text.toString())
+            } else {
+                updateNote(this, note!!, title.text.toString(), content.text.toString())
+            }
 
             finish()
         }
     }
 
     fun saveNote(context: Context, title: String, content: String) {
-        val noteDao = NoteDatabase.Companion.getDatabase(context).noteDao()
-        val newNote = Note(title = title, content = content)
+        val noteDao = NoteDatabase.getDatabase(context).noteDao()
+        val newNote = Note(title = title, content = content, date = selectedDate)
 
         CoroutineScope(Dispatchers.IO).launch {
             noteDao.insert(newNote)
@@ -122,7 +136,7 @@ class NoteActivity : AppCompatActivity() {
         note.content = newContent
         note.lastEdited = System.currentTimeMillis()
 
-        val noteDao = NoteDatabase.Companion.getDatabase(context).noteDao()
+        val noteDao = NoteDatabase.getDatabase(context).noteDao()
         CoroutineScope(Dispatchers.IO).launch {
             noteDao.update(note)
         }
