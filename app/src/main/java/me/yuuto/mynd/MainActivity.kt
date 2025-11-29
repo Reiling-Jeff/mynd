@@ -24,7 +24,9 @@ import me.yuuto.mynd.ui.calendar.CalendarActivity
 class MainActivity : AppCompatActivity() {
 
     private lateinit var rvNotesList: RecyclerView
-    private lateinit var fab: FloatingActionButton
+    private lateinit var fabPlus: FloatingActionButton
+    private lateinit var fabDots: FloatingActionButton
+    private lateinit var fabCalender: FloatingActionButton
     private val notes = mutableListOf<Note>()
     private lateinit var noteAdapter: NoteAdapter
     private lateinit var intent: Intent
@@ -35,7 +37,9 @@ class MainActivity : AppCompatActivity() {
 
         // TODO (Code Style): findViewById ist anfällig für Null-Pointer-Exceptions. Erwägen Sie die Verwendung von View Binding.
         rvNotesList = findViewById(R.id.rvNotesList)
-        fab = findViewById(R.id.fab)
+        fabPlus = findViewById(R.id.fab)
+        fabDots = findViewById(R.id.fabDots)
+        fabCalender = findViewById(R.id.fabCalendar)
 
         noteAdapter = NoteAdapter(notes) { note ->
             intent = Intent(this, NoteActivity::class.java)
@@ -46,15 +50,20 @@ class MainActivity : AppCompatActivity() {
         rvNotesList.layoutManager = LinearLayoutManager(this)
         rvNotesList.adapter = noteAdapter
 
-        fab.setOnClickListener {
+        fabPlus.setOnClickListener {
             intent = Intent(this, NoteActivity::class.java)
             startActivity(intent)
         }
 
-        fab.setOnLongClickListener {
+        fabCalender.setOnClickListener {
             intent = Intent(this, CalendarActivity::class.java)
             startActivity(intent)
             true
+        }
+
+        fabDots.setOnClickListener {
+            intent = Intent(this, SettingsActivity::class.java)
+            startActivity(intent)
         }
 
         enableSwipeToDelete()
