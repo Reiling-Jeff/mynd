@@ -22,6 +22,7 @@
                 android:id="@+id/headerCard"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
                 android:layout_marginBottom="16dp"
                 app:cardBackgroundColor="@color/inputBackground"
                 app:cardCornerRadius="20dp"

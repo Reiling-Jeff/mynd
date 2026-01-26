@@ -9,5 +9,5 @@
         android:id="@+id/calendarFragment"
         android:name="me.yuuto.mynd.ui.calendar.CalendarFragment"
         android:label="fragment_calendar"
-        tools:layout="@layout/calender" />
+        tools:layout="@layout/calendar" />
 </navigation>

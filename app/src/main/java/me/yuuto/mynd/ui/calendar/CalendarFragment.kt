@@ -15,7 +15,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import me.yuuto.mynd.NoteActivity
 import me.yuuto.mynd.R
-import me.yuuto.mynd.databinding.CalenderBinding
+import me.yuuto.mynd.databinding.CalendarBinding
 import me.yuuto.mynd.notes.NoteDatabase
 import java.time.LocalDate
 import java.time.YearMonth
@@ -24,7 +24,7 @@ import java.util.Locale
 
 class CalendarFragment : Fragment() {
 
-    private var _binding: CalenderBinding? = null
+    private var _binding: CalendarBinding? = null
     private val binding get() = _binding!!
 
     private lateinit var selectedDate: LocalDate
@@ -34,7 +34,7 @@ class CalendarFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = CalenderBinding.inflate(inflater, container, false)
+        _binding = CalendarBinding.inflate(inflater, container, false)
         return binding.root
     }
 

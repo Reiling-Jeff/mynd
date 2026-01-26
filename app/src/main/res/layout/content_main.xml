@@ -9,7 +9,7 @@
         android:layout_width="155dp"
         android:layout_height="61dp"
         android:layout_gravity="center|top"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="40dp"
         app:srcCompat="@drawable/logo" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -18,7 +18,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="top|start"
         android:layout_marginStart="15dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="40dp"
         android:scaleX="0.7"
         android:scaleY="0.7"
         app:backgroundTint="@color/inputBackground"
@@ -45,7 +45,7 @@
         android:layout_margin="20dp"
         app:backgroundTint="@color/purpleAccent"
         app:srcCompat="@drawable/plus"
-        app:tint="@color/textWhite" />
+        app:tint="@color/white" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabCalendar"
@@ -54,7 +54,7 @@
         android:layout_gravity="bottom|start"
         android:layout_margin="20dp"
         app:backgroundTint="@color/inputBackground"
-        app:srcCompat="@drawable/calender"
+        app:srcCompat="@drawable/calendar_placeholder"
         app:tint="@color/white" />
 
 </FrameLayout>
