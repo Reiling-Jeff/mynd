@@ -54,7 +54,7 @@
         android:layout_gravity="bottom|start"
         android:layout_margin="20dp"
         app:backgroundTint="@color/inputBackground"
-        app:srcCompat="@drawable/calendar_placeholder"
-        app:tint="@color/white" />
+        app:srcCompat="@drawable/calendar"
+        app:tint="@null" />
 
 </FrameLayout>
